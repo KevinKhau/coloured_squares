@@ -3,10 +3,12 @@ import './App.css';
 
 class App extends React.Component {
     constructor(props) {
+        const localSquares = localStorage.getItem( 'squares' );
+        const squares = localSquares ? localSquares.split(',') : [...Array(10)];
         super(props);
         this.state = {
             colors: [...Array(4)].map(this.getRandomColor),
-            squares: localStorage.getItem( 'squares' ).split(',') || [...Array(10)]
+            squares
         }
     }
 
@@ -31,6 +33,7 @@ class App extends React.Component {
     }
 
     setStyle(color) {
+        if (!color) return;
         const style = {backgroundColor: color};
         if (this.isDark(color)) {
             style.color = 'white';
@@ -39,8 +42,7 @@ class App extends React.Component {
     }
 
     stackColor(color) {
-        this.setState({squares: [color, ...this.state.squares.slice(0, this.state.squares.length - 1)]},
-            () => console.log({color, squares: this.state.squares}));
+        this.setState({squares: [color, ...this.state.squares.slice(0, this.state.squares.length - 1)]});
         localStorage.setItem('squares', this.state.squares);
     }
 
