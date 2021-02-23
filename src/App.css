@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+}
+
+.corner {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  margin: 2px;
+}
+
+.corner:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+.corner:nth-child(2) {
+  top: 0;
+  right: 0;
+}
+.corner:nth-child(3) {
+  bottom: 0;
+  left: 0;
+}
+.corner:nth-child(4) {
+  bottom: 0;
+  right: 0;
+}
+
+.corner button {
+  width: inherit;
+  height: inherit;
+}
+
+.square:nth-child(5) {
+  margin-top: 150px;
+}
+.square {
+  background-color: lightgrey;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.square span {
+  margin: 0;
+  position: relative;
+  top: 35%;
+}
