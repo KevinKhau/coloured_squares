@@ -17,14 +17,14 @@ class App extends React.Component {
             <div className="App">
                 {this.state.colors.map((color, index) =>
                     <div className="corner" key={index}>
-                        <button style={this.setStyle(color)}
+                        <button style={this.getStyle(color)}
                                 onClick={() => this.stackColor(color)}>
                             Click me: {color}
                         </button>
                     </div>
                 )}
                 {this.state.squares.map((color, i) =>
-                    <div className="square" style={this.setStyle(color)} key={i}>
+                    <div className="square" style={this.getStyle(color)} key={i}>
                         <span>*</span>
                     </div>
                 )}
@@ -32,18 +32,16 @@ class App extends React.Component {
         );
     }
 
-    setStyle(color) {
+    getStyle(color) {
         if (!color) return;
         const style = {backgroundColor: color};
-        if (this.isDark(color)) {
-            style.color = 'white';
-        }
+        if (this.isDark(color)) style.color = 'white';
         return style;
     }
 
     stackColor(color) {
-        this.setState({squares: [color, ...this.state.squares.slice(0, this.state.squares.length - 1)]});
-        localStorage.setItem('squares', this.state.squares);
+        this.setState({squares: [color, ...this.state.squares.slice(0, this.state.squares.length - 1)]},
+            () => localStorage.setItem('squares', this.state.squares));
     }
 
     getRandomColor() {
